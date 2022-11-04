@@ -11,26 +11,29 @@ import SeventyPercentOff from "../components/SeventyPercentOff";
 import ProductOverviewGrid from "../components/ProductOverviewGrid";
 import SiteDisclaimerIconsFour from "../components/SiteDisclaimerIconsFour";
 import Footer from "../components/Footer";
-import { ProductContext } from '../contexts/Context';
+import { FeaturedProductsContext, ThreeProductsContext, FourProductsContext } from '../contexts/Context';
+
 
 const HomeView = () => {
 
     window.top.document.title = 'Fixxo.';
 
-    const productContext = useContext(ProductContext);
+    const FeaturedProducts = useContext(FeaturedProductsContext);
+    const FourProducts = useContext(FourProductsContext);
+    const ThreeProducts = useContext(ThreeProductsContext);
 
     return (
         <>
             <NavBar />
             <StartBanner />
             <ClearanceNewArrivals />
-            <FeaturedProduct title={"Featured Products"} items={productContext.featuredProducts} />
+            <FeaturedProduct title={"Featured Products"} items={FeaturedProducts} />
             <FocusedProducts />
             <Speciality />
-            <BigLeft products={productContext.featuredProducts} />
-            <BigRight products={productContext.featuredProducts} />
+            <BigLeft products={FourProducts} />
+            <BigRight products={FourProducts} />
             <SeventyPercentOff />
-            <ProductOverviewGrid latestProducts={productContext.featuredProducts} bestSellingProducts={productContext.featuredProducts} topReactedProducts={productContext.featuredProducts} />
+            <ProductOverviewGrid latestProducts={ThreeProducts} bestSellingProducts={ThreeProducts} topReactedProducts={ThreeProducts} />
             <SiteDisclaimerIconsFour />
             <Footer />
         </>

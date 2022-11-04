@@ -12,7 +12,7 @@ const ProductDetailedSpecific = ({ articleNumber }) => {
     useEffect(() => {
 
         const getCurrentProduct = async () => {
-            await productContext.allProducts.forEach(element => {
+            await productContext.forEach(element => {
                 if (element.articleNumber === articleNumber) {
                     setCurrentProduct(element);
                 }

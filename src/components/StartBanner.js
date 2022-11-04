@@ -1,6 +1,6 @@
 import React from 'react'
-import ImgLeft from "../images/img-2.svg"
-import ImgRight from "../images/img-1.svg"
+import ImgLeft from "../images/showcase-img-1.png"
+import ImgRight from "../images/showcase-img-2.png"
 
 import ThemeButton from './components/ThemeButton'
 

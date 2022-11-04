@@ -2,10 +2,6 @@
     max-width: 1110px;
     margin-top: $section-margin-top-small;
 
-    @include sm {
-        margin-left: 1rem;
-    }
-
     .holder {
         display: flex;
         justify-content: left;
