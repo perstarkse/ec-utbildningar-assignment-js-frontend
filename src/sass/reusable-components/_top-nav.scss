@@ -1,9 +1,9 @@
 .top-nav {
-    width: 1110px;
+    max-width: 1110px;
     margin-top: $section-margin-top-small;
 
     @include sm {
-        padding-left: 0;
+        margin-left: 1rem;
     }
 
     .holder {
@@ -13,8 +13,7 @@
         gap: 0.5rem;
     }
 
-    .active {
+    .base-page {
         color: $color-theme-red;
     }
-
 }

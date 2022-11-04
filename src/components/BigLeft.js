@@ -13,7 +13,7 @@ const BigLeft = ({ products }) => {
             </div>
             <div className="product-grid" >
                 {
-                    products.map(product => <ProductCard item={product} key={product.id} />)
+                    products.map(product => <ProductCard item={product} key={product.articleNumber} />)
                 }
             </div>
         </section>

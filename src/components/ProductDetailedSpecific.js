@@ -1,22 +1,50 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
+import { ProductContext } from '../contexts/Context';
 
-const ProductDetailedSpecific = ({ title }) => {
+const ProductDetailedSpecific = ({ articleNumber }) => {
+
+    const productContext = useContext(ProductContext);
+
+    const [currentProduct, setCurrentProduct] = useState({})
+
+
+    useEffect(() => {
+
+        const getCurrentProduct = async () => {
+            await productContext.allProducts.forEach(element => {
+                if (element.articleNumber === articleNumber) {
+                    setCurrentProduct(element);
+                }
+            })
+        }
+        getCurrentProduct();
+    }, [])
+
     return (
         <section className="product-detailed container">
             <div className="top-part">
                 <div className="card">
                     <div className="product-images">
-                        <div className="big-image"></div>
+                        <div className="big-image">
+                            <img src={currentProduct.imageName} />
+                        </div>
                         <div className="small-images">
-                            <div className="image-1"></div>
-                            <div className="image-2"></div>
-                            <div className="image-3"></div>
+                            <div className="image-123">
+                                <img src={currentProduct.imageName} />
+                            </div>
+                            <div className="image-123">
+                                <img src={currentProduct.imageName} />
+                            </div>
+                            <div className="image-123">
+                                <img src={currentProduct.imageName} />
+                            </div>
                         </div>
                     </div>
                     <div className="text-holder">
-                        <h1 className="title">{title}</h1>
+                        <h1 className="title">{currentProduct.name}</h1>
                         <div className="sku-brand-holder">
-                            <div className="sku">SKU: 12345670</div>
+                            <div className="sku">SKU: {articleNumber} </div>
                             <div className="brand">BRAND: The Northland</div>
                         </div>
                         <div className="rating">
@@ -26,37 +54,34 @@ const ProductDetailedSpecific = ({ title }) => {
                             <i className="fa-sharp fa-solid fa-star"></i>
                             <i className="fa-sharp fa-solid fa-star"></i>
                         </div>
-                        <div className="price">$35.00</div>
-                        <div className="description-text">Discovered had get considered projection who favourable. Necessary up
-                            knowledge it tolerably. Unwilling departure
-                            education is be dashwoods or an. Use off agreeable law unwilling sir deficient curiosity
-                            instantly. (read more)</div>
+                        <div className="price">${currentProduct.price}</div>
+                        <div className="description-text">{currentProduct.description}</div>
                         <form action="" className="product-detail-form">
                             <div className="row-descriptor">
                                 <div className="descriptor">Size:</div>
                                 <div className="size-inputs">
                                     <div className="square-radio">
-                                        <label for="small">S</label>
+                                        <label htmlFor="small">S</label>
                                         <input name="user-size" type="radio" id="small" value="s" />
                                     </div>
                                     <div className="square-radio">
-                                        <label for="medium">M</label>
+                                        <label htmlFor="medium">M</label>
                                         <input name="user-size" type="radio" id="medium" value="m" />
                                     </div>
                                     <div className="square-radio">
-                                        <label for="large">L</label>
+                                        <label htmlFor="large">L</label>
                                         <input name="user-size" type="radio" id="large" value="l" />
                                     </div>
                                     <div className="square-radio">
-                                        <label for="xl">X</label>
+                                        <label htmlFor="xl">X</label>
                                         <input name="user-size" type="radio" id="xl" value="x" />
                                     </div>
                                 </div>
                             </div>
                             <div className="row-descriptor">
                                 <div className="descriptor">Color:</div>
-                                <select name="color" id="product-color" className="color-input">
-                                    <option value="" disabled selected>Choose an Option</option>
+                                <select defaultValue={"default"} name="color" id="product-color" className="color-input">
+                                    <option value="default" disabled >Choose an Option</option>
                                     <option value="black">Black</option>
                                     <option value="cyan">Cyan</option>
                                 </select>
@@ -88,10 +113,10 @@ const ProductDetailedSpecific = ({ title }) => {
             </div >
             <div className="bottom-part">
                 <div className="nav-links">
-                    <a href="">Description</a>
-                    <a href="">Additional</a>
-                    <a href="">Shopping & Returns</a>
-                    <a href="">Reviews</a>
+                    <NavLink href="">Description</NavLink>
+                    <NavLink href="">Additional</NavLink>
+                    <NavLink href="">Shopping & Returns</NavLink>
+                    <NavLink href="">Reviews</NavLink>
                 </div>
                 <div className="text-holder">
                     <div className="top">Way extensive and dejection get delivered deficient sincerity gentleman age. Too end

@@ -1,11 +1,11 @@
 import React from 'react'
-import ProductCard from './components/ProductCard'
+import ProductCard from './ProductCard'
 
 
-const FeaturedProduct = ({ title, items = [] }) => {
+const ProductGrid = ({ title, items = [] }) => {
 
     return (
-        <section className="featured-product container">
+        <section className="grid-section container">
             <div className="title">
                 <h2>{title}</h2>
             </div>
@@ -18,4 +18,4 @@ const FeaturedProduct = ({ title, items = [] }) => {
     )
 }
 
-export default FeaturedProduct
+export default ProductGrid

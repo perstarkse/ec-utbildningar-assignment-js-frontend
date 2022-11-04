@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { json } from 'react-router-dom'
+import { submitData } from '../scripts/submitAndValidation'
 
 const ContactUsForm = () => {
 
@@ -8,8 +10,12 @@ const ContactUsForm = () => {
 
     const [canSubmit, setCanSubmit] = useState(false)
 
+    const [failedSubmit, setFailedSubmit] = useState(false);
+
+
     //validate on keyup only after user has tried submitting. edit handleSubmit() and handleKeyUp() to remove.
-    const [hasTriedSubmitting, setHasTriedSubmitting] = useState(false)
+    //set to true to validate always
+    const [hasTriedSubmitting, setHasTriedSubmitting] = useState(true)
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -52,14 +58,29 @@ const ContactUsForm = () => {
         return errors;
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setFailedSubmit(false);
+        setCanSubmit(false);
         setHasTriedSubmitting(true);
         setFormErrors(validate(contactForm));
-        if (Object.entries(validate(contactForm)).length === 0)
-            setCanSubmit(true)
-        else
-            setCanSubmit(false)
+
+        let name = contactForm.name;
+        let email = contactForm.email;
+        let comments = contactForm.comments;
+
+        let json = JSON.stringify({ name, email, comments });
+
+        if (Object.entries(validate(contactForm)).length === 0) {
+            if (submitData("https://win22-webapi.azurewebsites.net/api/contactform", json, "POST")) {
+                setCanSubmit(true);
+                setFailedSubmit(false);
+                setContactForm({ name: '', email: '', comments: '' });
+            } else {
+                setCanSubmit(false);
+                setFailedSubmit(true);
+            };
+        } else { setCanSubmit(false) }
     }
 
     const handleKeyUp = () => {
@@ -71,34 +92,36 @@ const ContactUsForm = () => {
         <section className="contact-us-form container">
             <div className="title">Come in Contact with Us</div>
             {
-                canSubmit ? (<div className='d-flex justify-content-center align-items-center mt-5'>
-                    <div>Thank you for your comment</div>
-                </div>)
-                    :
-                    (<form action="" onSubmit={handleSubmit} noValidate>
-                        <div className="top">
-                            <div className="form-group">
-                                <input className="" type="text" name="contactUs" id="name" placeholder="Your Name"
-                                    onKeyUp={handleKeyUp} onChange={handleChange} value={contactForm.name} />
-                                <div id="name-error" className="text-danger">{formErrors.name}</div>
-                            </div>
-                            <div className="form-group">
-                                <input className="" type="email" name="contactUs" id="email" placeholder="Your Mail"
-                                    onKeyUp={handleKeyUp} onChange={handleChange} value={contactForm.email} />
-                                <div id="email-error" className="text-danger">{formErrors.email}</div>
-                            </div>
-                        </div>
-                        <div className="bottom">
-                            <div className="form-group">
-                                <input className="" type="text" name="contactUs" id="comments" placeholder="Comments"
-                                    onKeyUp={handleKeyUp} onChange={handleChange} data-required-min="5" value={contactForm.comments} />
-                                <div id="comments-error" className="text-danger">{formErrors.comments}</div>
-                            </div>
-                        </div>
-                        <button type='submit' className='btn-themed btn-no-styles'>Post Comments</button>
-                        {/* <ThemeButton onClick={SubmitEvent} input={"Post Comments"} modclassName="btn-no-styles" /> */}
-                    </form>
-                    )}
+                canSubmit ? (<div className='alert alert-success text-center mt-2' role="alert"><h2>Thank you for your comment.</h2> <p>We will contact you as soon as possible.</p> </div>)
+                    : (<></>)
+            }
+            {
+                failedSubmit ? (<div className='alert alert-danger text-center mt-2' role="alert"><h2>Something went wrong...</h2></div>)
+                    : (<></>)
+            }
+            <form action="" onSubmit={handleSubmit} noValidate>
+                <div className="top">
+                    <div className="form-group">
+                        <input className="" type="text" name="contactUs" id="name" placeholder="Your Name"
+                            onKeyUp={handleKeyUp} onChange={handleChange} value={contactForm.name} />
+                        <div id="name-error" className="text-danger">{formErrors.name}</div>
+                    </div>
+                    <div className="form-group">
+                        <input className="" type="email" name="contactUs" id="email" placeholder="Your Mail"
+                            onKeyUp={handleKeyUp} onChange={handleChange} value={contactForm.email} />
+                        <div id="email-error" className="text-danger">{formErrors.email}</div>
+                    </div>
+                </div>
+                <div className="bottom">
+                    <div className="form-group">
+                        <input className="" type="text" name="contactUs" id="comments" placeholder="Comments"
+                            onKeyUp={handleKeyUp} onChange={handleChange} data-required-min="5" value={contactForm.comments} />
+                        <div id="comments-error" className="text-danger">{formErrors.comments}</div>
+                    </div>
+                </div>
+                <button type='submit' className='btn-themed btn-no-styles'>Post Comments</button>
+                {/* <ThemeButton onClick={SubmitEvent} input={"Post Comments"} modclassName="btn-no-styles" /> */}
+            </form>
         </section>
     )
 }

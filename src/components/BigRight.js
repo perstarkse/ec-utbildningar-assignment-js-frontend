@@ -7,7 +7,7 @@ const BigRight = ({ products }) => {
         <section className="bigright container">
             <div className="product-grid">
                 {
-                    products.map(product => <ProductCard item={product} key={product.id} />)
+                    products.map(product => <ProductCard item={product} key={product.articleNumber} />)
                 }
             </div>
             <div className="one-right">

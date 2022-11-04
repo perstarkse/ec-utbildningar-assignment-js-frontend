@@ -1,4 +1,4 @@
-.featured-product {
+.grid-section {
     max-width: 1110px;
     display: flex;
     justify-content: center;
@@ -29,9 +29,7 @@
         gap: 1.875rem;
         row-gap: 0rem;
         grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        max-height: 644px;
-        overflow: hidden;
+        grid-template-rows: auto;
 
         @include sm {
             grid-template-columns: repeat(2, 1fr);
@@ -46,6 +44,12 @@
         @include full {
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(2, 1fr);
+        }
+
+        .card {
+            .price-holder {
+                justify-content: center;
+            }
         }
     }
 

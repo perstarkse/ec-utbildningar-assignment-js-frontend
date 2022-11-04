@@ -12,7 +12,7 @@ const RelatedProducts = ({ products }) => {
             </div>
             <div className="horizontal-card-view">
                 {
-                    products.map(product => <ProductCard item={product} key={product.id} />)
+                    products.map(product => <ProductCard item={product} key={product.articleNumber} />)
                 }
             </div>
         </section>

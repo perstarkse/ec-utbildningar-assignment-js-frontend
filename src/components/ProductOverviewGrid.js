@@ -8,7 +8,7 @@ const ProductOverviewGrid = ({ latestProducts, bestSellingProducts, topReactedPr
                 <div className="title">Latest Product</div>
                 <div className="product-grid">
                     {
-                        latestProducts.map(product => <ProductCard item={product} key={product.id} />)
+                        latestProducts.map(product => <ProductCard item={product} key={product.articleNumber} />)
                     }
                 </div>
             </div>
@@ -16,7 +16,7 @@ const ProductOverviewGrid = ({ latestProducts, bestSellingProducts, topReactedPr
                 <div className="title">Best Selling Product</div>
                 <div className="product-grid">
                     {
-                        bestSellingProducts.map(product => <ProductCard item={product} key={product.id} />)
+                        bestSellingProducts.map(product => <ProductCard item={product} key={product.articleNumber} />)
                     }
                 </div>
             </div>
@@ -24,7 +24,7 @@ const ProductOverviewGrid = ({ latestProducts, bestSellingProducts, topReactedPr
                 <div className="title">Top Reacted Product</div>
                 <div className="product-grid">
                     {
-                        topReactedProducts.map(product => <ProductCard item={product} key={product.id} />)
+                        topReactedProducts.map(product => <ProductCard item={product} key={product.articleNumber} />)
                     }
                 </div>
             </div>

@@ -75,3 +75,37 @@
         border: none;
     }
 }
+
+.btn-quick-view {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    background-color: $color-theme-red;
+    color: $color-white;
+    position: absolute;
+    bottom: 0px;
+
+    @include md-cards {
+        display: none;
+    }
+
+    &:hover {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 50px;
+        background-color: $color-theme-red;
+        color: $color-white;
+        position: absolute;
+        bottom: 0px;
+
+        &:hover {
+            background-color: $color-text-dark-header;
+        }
+    }
+}

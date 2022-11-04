@@ -13,7 +13,7 @@ const ContactsView = () => {
             <NavBar />
             <TopAdBar />
             <TopNav subPage="Contact" />
-            {/* <Map /> */}
+            <Map />
             <ContactUsForm />
             <Footer />
         </>
