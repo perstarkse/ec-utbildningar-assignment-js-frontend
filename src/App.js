@@ -20,9 +20,6 @@ function App() {
   const [fourProducts, setFourProducts] = useState([])
 
   useEffect(() => {
-
-    console.log("useffect ran");
-
     const fetchAllProducts = async () => {
       let result = await fetch('https://win22-webapi.azurewebsites.net/api/products')
       setProducts(await result.json());

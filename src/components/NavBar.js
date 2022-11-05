@@ -27,12 +27,10 @@ const NavBar = () => {
                 <NavLink to="/contacts" end>Contact</NavLink>
             </div>
             <div className="icons">
-                {/* <MenuIcon link={"/"} id="searchIcon" icon="fa-regular fa-magnifying-glass" /> */}
                 <button onClick={toggleSearchBar} className="circle searchIcon"><i className="fa-regular fa-magnifying-glass"></i></button>
                 <MenuIcon link={"/compare"} hideOnMobile={true} icon="fa-regular fa-code-compare" />
                 <MenuIcon link={"/wishlist"} hideOnMobile={true} icon="fa-regular fa-heart" quantity="3" />
                 <MenuIcon link={"/shoppingcart"} icon="fa-regular fa-bag-shopping" quantity="9" />
-                {/* <MenuIcon link={"/"} id="menuIconHandler" icon="fa-solid fa-bars" /> */}
                 <button onClick={toggleMenu} className="circle menuIcon"><i className="fa-regular fa-bars"></i></button>
             </div>
             <div className={`searchBar ${!showSearchBar ? "active" : ""}`}>
