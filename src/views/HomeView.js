@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import NavBar from "../components/NavBar";
 import StartBanner from '../components/StartBanner';
 import ClearanceNewArrivals from "../components/ClearanceNewArrivals";

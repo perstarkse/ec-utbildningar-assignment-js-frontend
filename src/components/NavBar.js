@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import MenuIcon from './components/MenuIcon'
 import { NavLink } from 'react-router-dom'
+import { useShoppingCart } from '../contexts/ShoppingCartContext'
 
 const NavBar = () => {
+
+    const { cartQuantity } = useShoppingCart();
+
     const [showMenu, setShowMenu] = useState(false);
 
     const [showSearchBar, setSearchBar] = useState(true);
@@ -30,7 +34,10 @@ const NavBar = () => {
                 <button onClick={toggleSearchBar} className="circle searchIcon"><i className="fa-regular fa-magnifying-glass"></i></button>
                 <MenuIcon link={"/compare"} hideOnMobile={true} icon="fa-regular fa-code-compare" />
                 <MenuIcon link={"/wishlist"} hideOnMobile={true} icon="fa-regular fa-heart" quantity="3" />
-                <MenuIcon link={"/shoppingcart"} icon="fa-regular fa-bag-shopping" quantity="9" />
+                <button className='circle' type="button" data-bs-toggle="offcanvas" data-bs-target="#shoppingCart" aria-controls="shoppingCart">
+                    <span className='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-theme'>{cartQuantity}</span>
+                    <i className='fa-regular fa-bag-shopping'></i>
+                </button>
                 <button onClick={toggleMenu} className="circle menuIcon"><i className="fa-regular fa-bars"></i></button>
             </div>
             <div className={`searchBar ${!showSearchBar ? "active" : ""}`}>

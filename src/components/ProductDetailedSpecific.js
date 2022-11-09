@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ProductContext } from '../contexts/Context';
+import ExternalLinkIcon from './components/ExternalLinkIcon';
 
 const ProductDetailedSpecific = ({ articleNumber }) => {
+
 
     const productContext = useContext(ProductContext);
 
@@ -10,7 +12,6 @@ const ProductDetailedSpecific = ({ articleNumber }) => {
 
 
     useEffect(() => {
-
         const getCurrentProduct = async () => {
             await productContext.forEach(element => {
                 if (element.articleNumber === articleNumber) {
@@ -19,7 +20,7 @@ const ProductDetailedSpecific = ({ articleNumber }) => {
             })
         }
         getCurrentProduct();
-    }, [])
+    },)
 
     return (
         <section className="product-detailed container">
@@ -27,17 +28,17 @@ const ProductDetailedSpecific = ({ articleNumber }) => {
                 <div className="card">
                     <div className="product-images">
                         <div className="big-image">
-                            <img src={currentProduct.imageName} />
+                            <img src={currentProduct.imageName} alt="bigImg" />
                         </div>
                         <div className="small-images">
                             <div className="image-123">
-                                <img src={currentProduct.imageName} />
+                                <img src={currentProduct.imageName} alt="mini 1" />
                             </div>
                             <div className="image-123">
-                                <img src={currentProduct.imageName} />
+                                <img src={currentProduct.imageName} alt="mini 2" />
                             </div>
                             <div className="image-123">
-                                <img src={currentProduct.imageName} />
+                                <img src={currentProduct.imageName} alt="mini 3" />
                             </div>
                         </div>
                     </div>
@@ -91,7 +92,7 @@ const ProductDetailedSpecific = ({ articleNumber }) => {
                                 <div className="qty">
                                     <div className="amount-button">
                                         <div className="less"><i className="fa-solid fa-minus"></i></div>
-                                        <div className="number">5</div>
+                                        <div className="number">1</div>
                                         <div className="more"><i className="fa-solid fa-plus"></i></div>
                                     </div>
                                     <button className="btn-themed">ADD TO CART</button>
@@ -100,11 +101,11 @@ const ProductDetailedSpecific = ({ articleNumber }) => {
                             <div className="row-descriptor">
                                 <div className="descriptor">Share:</div>
                                 <div className="share-links">
-                                    <a href="" className="circle"><i className="fa-brands fa-facebook-f"></i></a>
-                                    <a href="" className="circle"><i className="fa-brands fa-instagram"></i></a>
-                                    <a href="" className="circle"><i className="fa-brands fa-twitter"></i></a>
-                                    <a href="" className="circle"><i className="fa-brands fa-google"></i></a>
-                                    <a href="" className="circle"><i className="fa-brands fa-linkedin"></i></a>
+                                    <ExternalLinkIcon circle={true} icon={"fa-brands fa-facebook-f"} link={"https://facebook.com"} />
+                                    <ExternalLinkIcon circle={true} icon={"fa-brands fa-instagram"} link={"https://instagram.com"} />
+                                    <ExternalLinkIcon circle={true} icon={"fa-brands fa-twitter"} link={"https://twitter.com"} />
+                                    <ExternalLinkIcon circle={true} icon={"fa-brands fa-google"} link={"https://google.com"} />
+                                    <ExternalLinkIcon circle={true} icon={"fa-brands fa-linkedin"} link={"https://linkedin.com"} />
                                 </div>
                             </div>
                         </form>

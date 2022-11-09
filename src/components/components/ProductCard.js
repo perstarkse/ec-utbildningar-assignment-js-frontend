@@ -1,7 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useShoppingCart } from '../../contexts/ShoppingCartContext'
+import { currencyFormatter } from '../../utilities/CurrencyFormatter';
 
 const ProductCard = ({ item }) => {
+
+    const { incrementQuantity } = useShoppingCart();
 
     const addToWishlist = (e) => {
         console.log(` ${e.target}" added to wishlist"`);
@@ -9,9 +13,7 @@ const ProductCard = ({ item }) => {
     const addToCompare = (e) => {
         console.log("added to compare");
     }
-    const addToCart = (e) => {
-        console.log("added to cart");
-    }
+
 
     return (
         <div className="card">
@@ -19,16 +21,13 @@ const ProductCard = ({ item }) => {
                 <img src={item.imageName} alt={item.name} />
                 <ul className="menu">
                     <li className="icons">
-                        {/* <p className="menu-item-description">Favorite</p> */}
                         <button onClick={addToWishlist} className="circle"><i className="fa-regular fa-heart"></i></button>
                     </li>
                     <li className="icons">
-                        {/* <p className="menu-item-description">Compare</p> */}
                         <button onClick={addToCompare} className="circle"><i className="fa-regular fa-shuffle"></i></button>
                     </li>
                     <li className="icons">
-                        {/* <p className="menu-item-description">Add to cart</p> */}
-                        <button onClick={addToCart} className="circle"><i className="fa-regular fa-bag-shopping"></i></button>
+                        <button data-testid="addToCart" onClick={() => incrementQuantity({ articleNumber: item.articleNumber, product: item })} className="circle"><i className="fa-regular fa-bag-shopping"></i></button>
                     </li>
                 </ul>
                 <NavLink to={`/products/${item.articleNumber}`} className={"quick-view btn-themed"}>
@@ -42,7 +41,7 @@ const ProductCard = ({ item }) => {
                     {/* {
                     for (var rating in {item.rating}) {console.log(rating)}
                     } */}
-                    <i className="fa-sharp fa-solid fa-star"></i>
+                    < i className="fa-sharp fa-solid fa-star"></i>
                     <i className="fa-sharp fa-solid fa-star"></i>
                     <i className="fa-sharp fa-solid fa-star"></i>
                     <i className="fa-sharp fa-solid fa-star"></i>
@@ -50,7 +49,7 @@ const ProductCard = ({ item }) => {
                 </div>
                 <div className='price-holder'>
                     <div className="salePrice">{item.salePrice}</div>
-                    <div className="price">{item.price}</div>
+                    <div className="price">{currencyFormatter(item.price)}</div>
                 </div>
             </div>
         </div >

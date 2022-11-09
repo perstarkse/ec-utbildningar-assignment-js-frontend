@@ -92,11 +92,11 @@ const ContactUsForm = () => {
         <section className="contact-us-form container">
             <div className="title">Come in Contact with Us</div>
             {
-                canSubmit ? (<div className='alert alert-success text-center mt-2' role="alert"><h2>Thank you for your comment.</h2> <p>We will contact you as soon as possible.</p> </div>)
+                canSubmit ? (<div data-testid="success" className='alert alert-success text-center mt-2' role="alert"><h2>Thank you for your comment.</h2> <p>We will contact you as soon as possible.</p> </div>)
                     : (<></>)
             }
             {
-                failedSubmit ? (<div className='alert alert-danger text-center mt-2' role="alert"><h2>Something went wrong...</h2></div>)
+                failedSubmit ? (<div data-testid="failure" className='alert alert-danger text-center mt-2' role="alert"><h2>Something went wrong...</h2></div>)
                     : (<></>)
             }
             <form action="" onSubmit={handleSubmit} noValidate>
@@ -116,11 +116,10 @@ const ContactUsForm = () => {
                     <div className="form-group">
                         <input className="" type="text" name="contactUs" id="comments" placeholder="Comments"
                             onKeyUp={handleKeyUp} onChange={handleChange} data-required-min="5" value={contactForm.comments} />
-                        <div id="comments-error" className="text-danger">{formErrors.comments}</div>
+                        <div data-testid="commentsError" id="comments-error" className="text-danger">{formErrors.comments}</div>
                     </div>
                 </div>
                 <button type='submit' className='btn-themed btn-no-styles'>Post Comments</button>
-                {/* <ThemeButton onClick={SubmitEvent} input={"Post Comments"} modclassName="btn-no-styles" /> */}
             </form>
         </section>
     )

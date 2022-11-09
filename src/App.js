@@ -9,6 +9,7 @@ import FavoritesView from './views/FavoritesView';
 import ShoppingCartView from './views/ShoppingCartView';
 import ProductDetailsViewSpecific from './views/ProductDetailsViewSpecific'
 import { ProductContext, FeaturedProductsContext, ThreeProductsContext, FourProductsContext } from './contexts/Context';
+import { ShoppingCartProvider } from './contexts/ShoppingCartContext';
 
 import './sass/style.scss';
 
@@ -48,24 +49,26 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ProductContext.Provider value={products}>
-        <FeaturedProductsContext.Provider value={featured} >
-          <ThreeProductsContext.Provider value={threeProducts} >
-            <FourProductsContext.Provider value={fourProducts} >
-              <Routes>
-                <Route path="/" element={<HomeView />} />
-                <Route path="/products" element={<ProductDetailsView />} />
-                <Route path="/products/:articleNumber" element={<ProductDetailsViewSpecific />} />
-                <Route path="/contacts" element={<ContactsView />} />
-                <Route path="/compare" element={<CompareView />} />
-                <Route path="/favorites" element={<FavoritesView />} />
-                <Route path="/cart" element={<ShoppingCartView />} />
-                <Route path="*" element={<NotFoundView />} />
-              </Routes>
-            </FourProductsContext.Provider>
-          </ThreeProductsContext.Provider>
-        </FeaturedProductsContext.Provider>
-      </ProductContext.Provider>
+      <ShoppingCartProvider>
+        <ProductContext.Provider value={products}>
+          <FeaturedProductsContext.Provider value={featured} >
+            <ThreeProductsContext.Provider value={threeProducts} >
+              <FourProductsContext.Provider value={fourProducts} >
+                <Routes>
+                  <Route path="/" element={<HomeView />} />
+                  <Route path="/products" element={<ProductDetailsView />} />
+                  <Route path="/products/:articleNumber" element={<ProductDetailsViewSpecific />} />
+                  <Route path="/contacts" element={<ContactsView />} />
+                  <Route path="/compare" element={<CompareView />} />
+                  <Route path="/favorites" element={<FavoritesView />} />
+                  <Route path="/cart" element={<ShoppingCartView />} />
+                  <Route path="*" element={<NotFoundView />} />
+                </Routes>
+              </FourProductsContext.Provider>
+            </ThreeProductsContext.Provider>
+          </FeaturedProductsContext.Provider>
+        </ProductContext.Provider>
+      </ShoppingCartProvider>
     </BrowserRouter>
   );
 }
