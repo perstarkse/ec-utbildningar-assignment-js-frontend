@@ -1,7 +1,7 @@
 .product-detailed {
     min-width: none;
     max-width: 1110px;
-    margin-top: $section-margin-top-small;
+    // margin-top: $section-margin-top-small;
     display: flex;
     flex-direction: column;
 
@@ -22,7 +22,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 1250px;
+            height: 1200px;
 
             @include lg {
                 flex-direction: row;

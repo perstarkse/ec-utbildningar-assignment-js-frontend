@@ -1,38 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { } from 'react'
 import { NavLink } from 'react-router-dom'
-import { ProductContext } from '../contexts/Context';
-import { useShoppingCart } from '../contexts/ShoppingCartContext';
 import ExternalLinkIcon from './components/ExternalLinkIcon';
 import ThemeButton from './components/ThemeButton';
 
-const ProductDetailedSpecific = ({ articleNumber }) => {
-
-    const { incrementQuantity } = useShoppingCart();
-
-    const productContext = useContext(ProductContext);
-
-    const [currentProduct, setCurrentProduct] = useState({})
-
-
-    // useEffect(() => {
-    //     const fetchSpecificProduct = async () => {
-    //         let result = await fetch(`https://win22-webapi.azurewebsites.net/api/products/${articleNumber}`)
-    //         setCurrentProduct(await result.json());
-    //     }
-    //     fetchSpecificProduct();
-    // }, [])
-
-    useEffect(() => {
-        const getCurrentProduct = () => {
-            productContext.forEach(element => {
-                if (element.articleNumber === articleNumber) {
-                    setCurrentProduct(element);
-                }
-            })
-        }
-        getCurrentProduct();
-    }, [productContext, articleNumber])
-
+const ProductDetailedSpecific = ({ currentProduct }) => {
     return (
         <section className="product-detailed container">
             <div className="top-part">
@@ -56,7 +27,7 @@ const ProductDetailedSpecific = ({ articleNumber }) => {
                     <div className="text-holder">
                         <h1 className="title">{currentProduct.name}</h1>
                         <div className="sku-brand-holder">
-                            <div className="sku">SKU: {articleNumber} </div>
+                            <div className="sku">SKU: {currentProduct.articleNumber} </div>
                             <div className="brand">BRAND: The Northland</div>
                         </div>
                         <div className="rating">
@@ -106,7 +77,7 @@ const ProductDetailedSpecific = ({ articleNumber }) => {
                                         <div className="number">1</div>
                                         <div className="more"><i className="fa-solid fa-plus"></i></div>
                                     </div>
-                                    <ThemeButton onClick={() => incrementQuantity({ articleNumber: currentProduct.articleNumber, product: currentProduct })} input={"ADD TO CART"} />
+                                    <ThemeButton input={"ADD TO CART"} />
 
                                 </div>
                             </div>
