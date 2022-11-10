@@ -1,26 +1,37 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ProductContext } from '../contexts/Context';
+import { useShoppingCart } from '../contexts/ShoppingCartContext';
 import ExternalLinkIcon from './components/ExternalLinkIcon';
+import ThemeButton from './components/ThemeButton';
 
 const ProductDetailedSpecific = ({ articleNumber }) => {
 
+    const { incrementQuantity } = useShoppingCart();
 
     const productContext = useContext(ProductContext);
 
     const [currentProduct, setCurrentProduct] = useState({})
 
 
+    // useEffect(() => {
+    //     const fetchSpecificProduct = async () => {
+    //         let result = await fetch(`https://win22-webapi.azurewebsites.net/api/products/${articleNumber}`)
+    //         setCurrentProduct(await result.json());
+    //     }
+    //     fetchSpecificProduct();
+    // }, [])
+
     useEffect(() => {
-        const getCurrentProduct = async () => {
-            await productContext.forEach(element => {
+        const getCurrentProduct = () => {
+            productContext.forEach(element => {
                 if (element.articleNumber === articleNumber) {
                     setCurrentProduct(element);
                 }
             })
         }
         getCurrentProduct();
-    },)
+    }, [productContext, articleNumber])
 
     return (
         <section className="product-detailed container">
@@ -95,7 +106,8 @@ const ProductDetailedSpecific = ({ articleNumber }) => {
                                         <div className="number">1</div>
                                         <div className="more"><i className="fa-solid fa-plus"></i></div>
                                     </div>
-                                    <button className="btn-themed">ADD TO CART</button>
+                                    <ThemeButton onClick={() => incrementQuantity({ articleNumber: currentProduct.articleNumber, product: currentProduct })} input={"ADD TO CART"} />
+
                                 </div>
                             </div>
                             <div className="row-descriptor">

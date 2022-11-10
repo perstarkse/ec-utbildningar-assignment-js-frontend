@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { json } from 'react-router-dom'
 import { submitData } from '../scripts/submitAndValidation'
 
 const ContactUsForm = () => {
@@ -12,7 +11,6 @@ const ContactUsForm = () => {
 
     const [failedSubmit, setFailedSubmit] = useState(false);
 
-
     //validate on keyup only after user has tried submitting. edit handleSubmit() and handleKeyUp() to remove.
     //set to true to validate always
     const [hasTriedSubmitting, setHasTriedSubmitting] = useState(true)
@@ -24,6 +22,7 @@ const ContactUsForm = () => {
 
     const validate = (values) => {
         const errors = {};
+        // eslint-disable-next-line
         const emailRegEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         const nameRegEx = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/
         if (!values.name) {
