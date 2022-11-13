@@ -1,12 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import HomeView from './views/HomeView';
-import ProductDetailsView from './views/ProductDetailsView';
+import ProductDetailsView from './views/AllProductsView';
 import ContactsView from './views/ContactsView';
 import NotFoundView from './views/NotFoundView';
 import CompareView from './views/CompareView';
 import FavoritesView from './views/FavoritesView';
-import ShoppingCartView from './views/ShoppingCartView';
 import ProductDetailsViewSpecific from './views/ProductDetailsViewSpecific'
 import { ProductContext, FeaturedProductsContext, ThreeProductsContext, FourProductsContext } from './contexts/Context';
 import { ShoppingCartProvider } from './contexts/ShoppingCartContext';
@@ -61,7 +60,6 @@ function App() {
                   <Route path="/contacts" element={<ContactsView />} />
                   <Route path="/compare" element={<CompareView />} />
                   <Route path="/favorites" element={<FavoritesView />} />
-                  <Route path="/cart" element={<ShoppingCartView />} />
                   <Route path="*" element={<NotFoundView />} />
                 </Routes>
               </FourProductsContext.Provider>

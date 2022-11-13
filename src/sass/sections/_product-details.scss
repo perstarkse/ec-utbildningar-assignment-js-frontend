@@ -1,7 +1,6 @@
 .product-detailed {
     min-width: none;
     max-width: 1110px;
-    // margin-top: $section-margin-top-small;
     display: flex;
     flex-direction: column;
 
@@ -22,7 +21,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 1200px;
+            height: 1100px;
 
             @include lg {
                 flex-direction: row;
@@ -132,10 +131,6 @@
                     margin-bottom: $product-details-text-holder-margin;
                     font-size: $font-size-13;
                     color: $color-grey-4 !important;
-
-                    .sku {}
-
-                    .brand {}
                 }
 
                 .price {

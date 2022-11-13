@@ -6,7 +6,7 @@ const FavoritesView = () => {
     return (
         <>
             <NavBar />
-            <div></div>
+            <div>Favorites: </div>
             <Footer />
         </>
     )
